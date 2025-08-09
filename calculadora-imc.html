@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,89 +9,81 @@
     <link rel="stylesheet" href="assets/css/calculadora.css">
 
 </head>
+
 <body>
-    <div class="container bg-white">
+    <div class="container bg-white my-5 p-4 border border-secondary border-2 rounded-3">
         <div class="row">
-            <div class="col-lg-6">
-               <h2>Selecione</h2> 
-               <label>
-                    <input type="radio" name="tipo" value="adulto"
-                    onchange="atualizarSelecao('tipo')">
-                    <span class="opcao-texto" id="lblAdulto">Adulto</span>
-               </label>
-                <label>
-                      <input type="radio" name="tipo" value="crianca"
-                      onchange="atualizarSelecao('tipo')">
-                      <span class="opcao-texto" id="lblCrianca">Criança</span>
-                </label>       
-                <p class="sub-info" id="infoIdade"> </p>        
+            <!--Linha contendo o tipo adulto ou criança-->
+            <div class="col-sm-6  col-sm-6 col-md-4">
+                <section class="row">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Selecione</h4>
+                            <label>
+                                <input type="radio" name="tipo" value="adulto" onchange="atualizarSelecao('tipo')">
+                                <span id="lblAdulto">Adulto</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="tipo" value="crianca" onchange="atualizarSelecao('tipo')">
+                                <span id="lblCrianca">Criança</span>
+                            </label>
+                            <p class="text-muted small mt-2" id="infoIdade"> </p>
+                        </div>
+                        <div class="col-sm-8">
+                            <h4>Sexo</h4>
+                            <label>
+                                <input type="radio" name="sexo" value="masculino" onchange="atualizarSelecao('sexo')">
+                                <span id="lblMasculino">Masculino</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="sexo" value="feminino" onchange="atualizarSelecao('sexo')">
+                                <span class="opcao-texto" id="lblFeminino">Feminino</span>
+                            </label>
+                        </div>
+                    </div>
             </div>
-            <div class="col-lg-6">
-                <h2>Sexo</h2>
-                <label>
-                    <input type="radio" name="genero" value="masculino"
-                      onchange="atualizarSelecao('genero')">
-                      <span class="opcao-texto" id="lblMascuino">Masculino</span>       
-                </label>
-                <label>
-                    <input type="radio" name="genero" value="feminino"
-                      onchange="atualizarSelecao('genero')">
-                      <span class="opcao-texto" id="lblFeminino">Feminino</span>       
-                </label>
-                 <p class="sub-info" id="infoGenero"> </p> 
-            </div>            
+            <script>
+                function atualizarSelecao(grupo) {
+                    console.log("Entrei no atualizarSelecao" + grupo);
+                    if (grupo === 'tipo') {
+                        const tipoSelecionado = document.querySelector('input[name="tipo"]:checked').value;
+
+                        if (tipoSelecionado === 'adulto') {
+                            document.getElementById('lblAdulto').classList.add('laranja');
+                            document.getElementById('lblCrianca').classList.remove('laranja');
+                            infoIdade.textContent = 'Acima de 19 anos';
+                        }
+                        else {
+                            document.getElementById('lblCrianca').classList.add('laranja');
+                            document.getElementById('lblAdulto').classList.remove('laranja');
+                            infoIdade.textContent = 'Abaixo de 18 anos';
+                        }
+
+                    }
+                    console.log("Entrei no atualizarSelecao" + grupo);
+                    if (grupo === 'sexo') {
+                        const sexoSelecionado = document.querySelector('input[name="sexo"]:checked').value;
+
+                        if (sexoSelecionado === 'masculino') {
+                            document.getElementById('lblMasculino').classList.add('laranja');
+                            document.getElementById('lblFeminino').classList.remove('laranja');
+                        }
+
+                        else {
+                            document.getElementById('lblFeminino').classList.add('laranja');
+                            document.getElementById('lblMasculino').classList.remove('laranja');
+                            infoIdade.textContent = 'Abaixo de 18 anos';
+                        }
+
+                    }
+                }      
+            </script>
+            
         </div>
     </div>
+    </section>
     
-    <script>
-      function atualizarSelecao(grupo)
-      {
-         console.log("Entrei no atualizarSelecao" + grupo);
-            if (grupo==='tipo')
-            {
-                const tipoSelecionado = document.querySelector('input[name="tipo"]:checked').value;
-
-                if(tipoSelecionado === 'adulto')
-                 {
-                    document.getElementById('lblAdulto').classList.add('laranja');
-                    document.getElementById('lblCrianca').classList.remove('laranja');
-                    infoIdade.textContent = 'Acima de 19 anos';
-                 }
-                 else
-                 {
-                    document.getElementById('lblCrianca').classList.add('laranja');
-                    document.getElementById('lblAdulto').classList.remove('laranja');
-                    infoIdade.textContent = 'Abaixo de 18 anos';
-                 }
-                                          
-            }
-            
-      }  
-      function atualizarSelecao(grupo)
-      {
-         console.log("Entrei no atualizarSelecao" + grupo);
-            if (grupo==='genero')
-            {
-                const tipoSelecionado = document.querySelector('input[name="tipo"]:checked').value;
-
-                if(tipoSelecionado === 'adulto')
-                 {
-                    document.getElementById('lblMasculino').classList.add('laranja');
-                    document.getElementById('lblFeminino').classList.remove('laranja');
-                 }
-                  
-                 else
-                 {
-                    document.getElementById('lbFeminino').classList.add('laranja');
-                    document.getElementById('lblMasculino').classList.remove('laranja');
-                    infoIdade.textContent = 'Abaixo de 18 anos';
-                 }
-                                          
-            }
-            
-      }  
     
-    </script>
-
 </body>
+
 </html>
